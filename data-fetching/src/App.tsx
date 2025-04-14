@@ -1,25 +1,23 @@
-import { useEffect } from "react";
-import axios from "axios";
-
 import "./App.css";
+import { useFetch } from "./hooks/useFetch";
 
 function App() {
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon/ditto",
-        );
-        console.log(response.data);
-      } catch (error) {
-        console.error("There was a problem", error);
-      }
-    }
+  const { getTodos } = useFetch();
+  const { isLoading, isError, data } = getTodos();
 
-    fetchData();
-  }, []);
+  if (isLoading) return <div>Request is loading!</div>;
+  if (isError) return <div>Request has failed!</div>;
 
-  return <div>Home</div>;
+  return (
+    <div>
+      <h1>Todos</h1>
+      <ul>
+        {data.map((todo: any) => (
+          <li key={todo.id}>{todo.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default App;
