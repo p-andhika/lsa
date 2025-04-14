@@ -11,12 +11,12 @@ function App() {
   return (
     <div>
       <h1>Todos</h1>
-      <button onClick={addTodo}>Add Todo</button>
       <ul>
         {data.map((todo: any) => (
           <li key={todo.id}>{todo.title}</li>
         ))}
       </ul>
+      <button onClick={addTodo}>Add Todo</button>
     </div>
   );
 }
