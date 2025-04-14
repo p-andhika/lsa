@@ -13,6 +13,7 @@ export const useFetch = () => {
     useQuery({
       queryKey: ["todos"],
       queryFn: fetchTodos,
+      staleTime: 1000 * 60, // 1 minute
     });
 
   return { getTodos };
