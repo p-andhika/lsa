@@ -24,6 +24,10 @@ export const useFetch = () => {
       queryKey: ["todos"],
       queryFn: fetchTodos,
       staleTime: 1000 * 60, // 1 minute
+      placeholderData: [
+        { id: "placeholder1", title: "Fetching...", completed: false },
+        { id: "placeholder2", title: "Fetching...", completed: false },
+      ],
     });
 
   const { mutate } = useMutation({
