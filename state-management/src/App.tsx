@@ -2,6 +2,7 @@ import { useState, createContext } from "react";
 
 import "./App.css";
 import { Child } from "./components/Child";
+import { ChildReducer } from "./components/ChildReducer";
 
 export const MessageContext = createContext<{
   message: string;
@@ -19,6 +20,7 @@ function App() {
       }}
     >
       <Child />
+      <ChildReducer />
     </MessageContext.Provider>
   );
 }
