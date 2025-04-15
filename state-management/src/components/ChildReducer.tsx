@@ -15,7 +15,7 @@ const reducer = (state: any, action: any) => {
     case "CHANGE_BUTTON":
       return {
         ...state,
-        buttonText: "Change Button",
+        buttonText: action.payload,
       };
     default:
       throw new Error();
