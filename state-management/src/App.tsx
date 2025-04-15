@@ -14,8 +14,6 @@ const initialState = {
 };
 
 const reducer = (state: any, action: any) => {
-  console.log(action.type, action.payload);
-
   switch (action.type) {
     case "CHANGE_MESSAGE":
       return {
