@@ -1,17 +1,12 @@
 import { useState } from "react";
 
 import "./App.css";
+import { Child } from "./components/Child";
 
 function App() {
   const [message, setMessage] = useState("Hello World!");
 
-  return (
-    <div>
-      <h1>{message}</h1>
-
-      <button onClick={() => setMessage("Hello React!")}>Change message</button>
-    </div>
-  );
+  return <Child message={message} onClick={() => setMessage("Hello React!")} />;
 }
 
 export default App;
