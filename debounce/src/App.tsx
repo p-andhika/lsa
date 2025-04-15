@@ -9,7 +9,7 @@ function App() {
   const [value, setValue] = useState("");
   // const debouncedValue = useDebounce(value, 500);
 
-  const { debounce } = useDebounce();
+  const debounce = useDebounce();
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     debounce(() => setValue(e.target.value));
   };
