@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 
 import "./App.css";
 import { Child } from "./components/Child";
 
+export const MessageContext = createContext<{
+  message: string;
+  setMessage: Function;
+}>({ message: "", setMessage: () => {} });
+
 function App() {
   const [message, setMessage] = useState("Hello World!");
 
-  return <Child message={message} onClick={() => setMessage("Hello React!")} />;
+  return (
+    <MessageContext.Provider
+      value={{
+        message,
+        setMessage,
+      }}
+    >
+      <Child />
+    </MessageContext.Provider>
+  );
 }
 
 export default App;
