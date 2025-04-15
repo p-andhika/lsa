@@ -2,13 +2,19 @@ import { useContext } from "react";
 import { MessageContext } from "../App";
 
 export const Child = () => {
-  const { message, setMessage } = useContext(MessageContext);
+  const { state, dispatch } = useContext(MessageContext);
 
   return (
     <div>
-      <h1>{message}</h1>
+      <h1>{state.message}</h1>
 
-      <button onClick={() => setMessage("Hello React!")}>Change message</button>
+      <button
+        onClick={() =>
+          dispatch({ type: "CHANGE_MESSAGE", payload: "Hello React!" })
+        }
+      >
+        Change message
+      </button>
     </div>
   );
 };

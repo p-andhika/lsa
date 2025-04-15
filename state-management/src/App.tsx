@@ -1,26 +1,48 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useReducer } from "react";
 
 import "./App.css";
 import { Child } from "./components/Child";
-import { ChildReducer } from "./components/ChildReducer";
 
 export const MessageContext = createContext<{
-  message: string;
-  setMessage: Function;
-}>({ message: "", setMessage: () => {} });
+  state: any;
+  dispatch: any;
+}>({ state: {}, dispatch: {} });
+
+const initialState = {
+  message: "Hello Reducer",
+  buttonText: "Default Button Text",
+};
+
+const reducer = (state: any, action: any) => {
+  console.log(action.type, action.payload);
+
+  switch (action.type) {
+    case "CHANGE_MESSAGE":
+      return {
+        ...state,
+        message: action.payload,
+      };
+    case "CHANGE_BUTTON":
+      return {
+        ...state,
+        buttonText: action.payload,
+      };
+    default:
+      throw new Error();
+  }
+};
 
 function App() {
-  const [message, setMessage] = useState("Hello World!");
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <MessageContext.Provider
       value={{
-        message,
-        setMessage,
+        state,
+        dispatch,
       }}
     >
       <Child />
-      <ChildReducer />
     </MessageContext.Provider>
   );
 }
