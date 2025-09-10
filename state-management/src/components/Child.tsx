@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { MessageContext } from "../App";
+import { MessageContext } from "../context";
 
 export const Child = () => {
   const { state, dispatch } = useContext(MessageContext);
@@ -13,7 +13,13 @@ export const Child = () => {
           dispatch({ type: "CHANGE_MESSAGE", payload: "Hello React!" })
         }
       >
-        Change message
+        {state.buttonText}
+      </button>
+
+      <button
+        onClick={() => dispatch({ type: "CHANGE_BUTTON", payload: "Changed" })}
+      >
+        Change button text
       </button>
     </div>
   );
