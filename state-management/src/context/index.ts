@@ -1,16 +1,19 @@
 import { createContext } from "react";
 
-export const MessageContext = createContext({
-  state: {},
+export const MessageContext = createContext<{
+  state?: typeof initialState | null;
+  dispatch: any;
+}>({
+  state: null,
   dispatch: {},
 });
 
-export const initialMessageState = {
+export const initialState = {
   message: "Hello reducer",
   buttonText: "Default Button",
 };
 
-export const reducer = (state, action) => {
+export const reducer = (state: typeof initialState, action) => {
   switch (action.type) {
     case "CHANGE_MESSAGE":
       return {
