@@ -6,12 +6,15 @@ import "./App.css";
 import { useDebounce } from "./hooks/useDebounce";
 
 function App() {
-  const [value, setValue] = useState("");
-  // const debouncedValue = useDebounce(value, 500);
+  const [query, setQuery] = useState("");
+  const debouncedValue = useDebounce((input: string) => {
+    console.log(input);
+  }, 500);
 
-  const debounce = useDebounce();
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    debounce(() => setValue(e.target.value));
+    const value = e.target.value;
+    setQuery(value);
+    debouncedValue(value);
   };
 
   return (
@@ -22,7 +25,7 @@ function App() {
         // onChange={(e) => setValue(e.target.value)}
         onChange={onChange}
       />
-      <p>{value}</p>
+      <p>{query}</p>
     </>
   );
 }
