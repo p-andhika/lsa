@@ -1,7 +1,7 @@
 import { JSX, Suspense, lazy, useState } from "react";
 import "./App.css";
 
-const Post = lazy(() => import("./components/Post"));
+const LazyPost = lazy(() => import("./components/Post"));
 
 function App() {
   const [Comment, setComment] = useState<null | (() => JSX.Element)>(null);
@@ -16,7 +16,9 @@ function App() {
     <>
       <button onClick={onClick}>Show Comment</button>
       <Suspense fallback="Loading...">
-        <Post />
+        <Suspense fallback={<div>Lazy loading...</div>}>
+          <LazyPost />
+        </Suspense>
       </Suspense>
       {Comment && <Comment />}
     </>
